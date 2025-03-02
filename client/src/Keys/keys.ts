@@ -6,3 +6,4 @@ export const Logout = import.meta.env.VITE_APP_Logout;
 export const GetUser = import.meta.env.VITE_APP_GetUser;
 export const ForgetPw = import.meta.env.VITE_APP_ForgetPw;
 export const GoogleAPI = import.meta.env.VITE_APP_Google;
+export const UpdatePW = import.meta.env.VITE_APP_UpdatePW;

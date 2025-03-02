@@ -1,18 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Register, SERVER_URL } from "../Keys/keys";
+import { UpdatePW, SERVER_URL } from "../Keys/keys";
+
 import { useNavigate } from "react-router";
 
-export const useRegister = () => {
+export const useUpdatePW = (Token: string, Email: string) => {
   const [Form, setForm] = useState({
-    email: "",
     password: "",
-    fullName: "",
+    confirmPassword: "",
   });
-  const [IsLoading, setIsLoading] = useState(false);
   const Nevigate = useNavigate();
-
+  const [IsLoading, setIsLoading] = useState(false);
   const HandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -25,25 +24,37 @@ export const useRegister = () => {
   const HandleSubmit = async (eo: React.FormEvent) => {
     eo.preventDefault();
     setIsLoading(true);
-    if (!Form.email || !Form.password || !Form.fullName) {
+    if (!Form.confirmPassword || !Form.password) {
       toast.error("Please fill all the fields");
+      setIsLoading(false);
+      return;
+    }
+
+    if (Form.password !== Form.confirmPassword) {
+      toast.error("Password does not match");
       setIsLoading(false);
       return;
     }
 
     try {
       await axios
-        .post(`${SERVER_URL}${Register}`, {
-          email: Form.email,
-          password: Form.password,
-          fullName: Form.fullName,
-        })
+        .post(`${SERVER_URL}${UpdatePW}`,
+
+          {
+            password: Form.password,
+            Token: Token,
+            Email: Email
+          },
+          {
+            withCredentials: true,
+          })
         .then((res) => {
           toast.success(res.data.message);
           setIsLoading(false);
           Nevigate("/login");
         })
         .catch((error) => {
+          console.log(error);
           toast.error(error.response.data.message);
           setIsLoading(false);
         });
@@ -61,7 +72,7 @@ export const useRegister = () => {
   }
 
 
-  return { HandleChange, Form, IsLoading, setIsLoading, HandleSubmit };
+  return { HandleChange, Form, IsLoading, HandleSubmit };
 
 }
-export default useRegister
+export default useUpdatePW

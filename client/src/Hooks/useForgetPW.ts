@@ -22,7 +22,7 @@ export const useForgetPW = () => {
 
   const HandleSubmit = async (eo: React.FormEvent) => {
     eo.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
     if (!Form.email) {
       toast.error("Please fill the email field");
       setIsLoading(false);
@@ -42,7 +42,7 @@ export const useForgetPW = () => {
         .then((res) => {
           toast.success(res.data.message);
           setIsLoading(false);
-          Nevigate("/");
+
         })
         .catch((error) => {
           toast.error(error.response.data.message);
@@ -56,6 +56,7 @@ export const useForgetPW = () => {
 
     } finally {
       setIsLoading(false);
+      Nevigate("/");
     }
 
 

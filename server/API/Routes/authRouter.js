@@ -7,6 +7,9 @@ import { Register } from "../Controller/Register.js";
 import { logout } from "../Controller/logout.js";
 import { SetPW } from "../Controller/SetPassword.js";
 import { SendMail } from "../Providers/Mailer/SendMail.js";
+import { UpdatePassword } from "../Controller/UpdatePassword.js";
+
+
 const router = express.Router()
 
 
@@ -18,6 +21,7 @@ router.post("/auth/login", Login)
 router.post("/auth/logout", logout)
 router.post("/auth/set-password", SetPW)
 router.post("/auth/reset-password", SendMail)
+router.post("/auth/update-password", UpdatePassword)
 
 
 export default router

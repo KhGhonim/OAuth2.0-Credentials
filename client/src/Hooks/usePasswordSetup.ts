@@ -39,7 +39,7 @@ export const usePasswordSetup = (id: string) => {
 
   const HandleSubmit = async (eo: React.FormEvent) => {
     eo.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
     if (!Form.confirmPassword || !Form.password) {
       toast.error("Please fill all the fields");
       setIsLoading(false);

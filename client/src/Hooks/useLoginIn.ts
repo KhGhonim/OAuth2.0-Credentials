@@ -26,7 +26,7 @@ export const useLoginIn = () => {
 
   const HandleSubmit = async (eo: React.FormEvent) => {
     eo.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
     if (!Form.email || !Form.password) {
       toast.error("Please fill all the fields");
       setIsLoading(false);

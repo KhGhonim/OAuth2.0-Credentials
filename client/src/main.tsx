@@ -13,6 +13,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import Register from "./Pages/Auth/Register.tsx";
 import ForgetPw from "./Pages/Auth/ForgetPw.tsx";
 import PasswordSetup from "./Pages/Auth/PasswordSetup.tsx";
+import UpdatePW from "./Pages/Auth/UpdatePW.tsx";
 
 const root = document.getElementById("root");
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(root!).render(
           <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPw />} />
           <Route path="/set-password" element={<PasswordSetup />} />
+          <Route path="/update-password" element={<UpdatePW />} />
           <Route path="*" element={<ErrorPage />} />
           <Route path="/login/failure" element={<LoginFailure />} />
           <Route path="/login/success" element={<LoginSuccess />} />
